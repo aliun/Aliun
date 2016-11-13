@@ -20,14 +20,13 @@ public class MainMenuScreen extends ScreenAdapter {
 	public MainMenuScreen (AliunGame game) {
 		this.game = game;
 
-		guiCam = new OrthographicCamera(1600, 6000); //podesi ove koordinate
-		guiCam.position.set(1600 / 2, 6000 / 2, 0);
+		guiCam = new OrthographicCamera(4500, 8000); 
+		guiCam.position.set(4500 / 2, 8000 / 2, 0);
 		
-		CreateBounds = new Rectangle   ((1600-1560)/2, 2820, 1560,  705); 
-		VisitBounds = new Rectangle    ((1600-1560)/2, 2115, 1560,  705);
-		OptionsBounds = new Rectangle  ((1600-1560)/2, 1410, 1560,  705);
-		AboutBounds = new Rectangle    ((1600-1560)/2, 0,    1560,  705);
-		HelpBounds = new Rectangle     ((1600-1560)/2, 705,  1560,  705);
+		CreateBounds = new Rectangle   ((4500-480)/2, 4000, 480, 200); 
+		VisitBounds = new Rectangle    ((4500-480)/2, 5000, 480, 200);
+		AboutBounds = new Rectangle    ((4500-480)/2, 6000, 480, 200);
+		HelpBounds = new Rectangle     ((4500-480)/2, 7000, 480, 200);
 		
 		
 		touchPoint = new Vector3();
@@ -39,32 +38,25 @@ public class MainMenuScreen extends ScreenAdapter {
 
 			
 			if (CreateBounds.contains(touchPoint.x, touchPoint.y)) {
-				
-				//Assets.playSound(Assets.clickSound);
+
+				Assets.playSound(Assets.click);
 				game.setScreen(new CreateScreen(game));
-				
-				//return;
-			}
-			
-			if (VisitBounds.contains(touchPoint.x, touchPoint.y)) {
-				
-				//Assets.playSound(Assets.clickSound);
-				game.setScreen(new VisitScreen(game));
-				
-				//return;
-			}
-			
-			if (OptionsBounds.contains(touchPoint.x, touchPoint.y)) {
-				
-				//Assets.playSound(Assets.clickSound);
-				game.setScreen(new OptionsScreen(game));
 				
 				return;
 			}
 			
-			if (HelpBounds.contains(touchPoint.x, touchPoint.y)) {
+			if (VisitBounds.contains(touchPoint.x, touchPoint.y)) {
+
+				Assets.playSound(Assets.click);
+				game.setScreen(new VisitScreen(game));
 				
-				//Assets.playSound(Assets.clickSound);
+				return;
+			}
+			
+			
+			if (HelpBounds.contains(touchPoint.x, touchPoint.y)) {
+
+				Assets.playSound(Assets.click);
 				
 				game.setScreen(new HelpScreen(game));
 				
@@ -73,7 +65,7 @@ public class MainMenuScreen extends ScreenAdapter {
 			
 			if (AboutBounds.contains(touchPoint.x, touchPoint.y)) {
 				
-				//Assets.playSound(Assets.clickSound);
+				Assets.playSound(Assets.click);
 				
 				game.setScreen(new AboutScreen(game));
 				
@@ -92,17 +84,16 @@ public class MainMenuScreen extends ScreenAdapter {
 
 		game.batch.disableBlending();
 		game.batch.begin();
-		//game.batcher.draw(Assets.backgroundRegion, 0, 0, 320, 480);
+		game.batch.draw(Assets.backgroundRegion, 0, 0, 4500, 8000);
 		game.batch.end();
 
 		game.batch.enableBlending();
 		game.batch.begin();
 		
-		game.batch.draw(Assets.create,  (1600-1560)/2, 2820, 1560,  705);
-		game.batch.draw(Assets.visit,   (1600-1560)/2, 2115, 1560,  705);
-		game.batch.draw(Assets.options, (1600-1560)/2, 1410, 1560,  705);
-		game.batch.draw(Assets.help,    (1600-1560)/2, 705,  1560,  705);
-		game.batch.draw(Assets.about,   (1600-1560)/2, 0,    1560,  705);
+		game.batch.draw(Assets.create,  (4500-480)/2, 4000, 480, 200); 
+		game.batch.draw(Assets.visit,   (4500-480)/2, 5000, 480, 200); 
+		game.batch.draw(Assets.help,    (4500-480)/2, 6000, 480, 200); 
+		game.batch.draw(Assets.about,   (4500-480)/2, 7000, 480, 200); 
 		
 		//game.batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 0, 64, 64);
 		game.batch.end();	

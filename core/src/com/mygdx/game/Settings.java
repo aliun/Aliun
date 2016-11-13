@@ -5,8 +5,8 @@ import com.badlogic.gdx.files.FileHandle;
 
 public class Settings {
 	public static boolean soundEnabled = true;
-	public final static String file = ".aliun";
 	public static boolean aliunCreated = false;
+	public final static String file = ".aliun";
 
 	public static void load () {
 		try {

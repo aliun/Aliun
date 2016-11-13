@@ -8,23 +8,28 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 
 public class MainMenuScreen extends ScreenAdapter {
-	SuperJumper game;
+	AliunGame game;
 	OrthographicCamera guiCam;
-	Rectangle soundBounds;
-	Rectangle playBounds;
-	Rectangle highscoresBounds;
-	Rectangle helpBounds;
+	Rectangle CreateBounds;
+	Rectangle VisitBounds;
+	Rectangle OptionsBounds;
+	Rectangle AboutBounds;
+	Rectangle HelpBounds;
 	Vector3 touchPoint;
 
-	public MainMenuScreen (SuperJumper game) {
+	public MainMenuScreen (AliunGame game) {
 		this.game = game;
 
-		guiCam = new OrthographicCamera(320, 480);
-		guiCam.position.set(320 / 2, 480 / 2, 0);
-		soundBounds = new Rectangle(0, 0, 64, 64);
-		playBounds = new Rectangle(160 - 150, 200 + 18, 300, 36);
-		highscoresBounds = new Rectangle(160 - 150, 200 - 18, 300, 36);
-		helpBounds = new Rectangle(160 - 150, 200 - 18 - 36, 300, 36);
+		guiCam = new OrthographicCamera(1600, 6000); //podesi ove koordinate
+		guiCam.position.set(1600 / 2, 6000 / 2, 0);
+		
+		CreateBounds = new Rectangle   ((1600-1560)/2, 2820, 1560,  705); 
+		VisitBounds = new Rectangle    ((1600-1560)/2, 2115, 1560,  705);
+		OptionsBounds = new Rectangle  ((1600-1560)/2, 1410, 1560,  705);
+		AboutBounds = new Rectangle    ((1600-1560)/2, 0,    1560,  705);
+		HelpBounds = new Rectangle     ((1600-1560)/2, 705,  1560,  705);
+		
+		
 		touchPoint = new Vector3();
 	}
 
@@ -32,50 +37,75 @@ public class MainMenuScreen extends ScreenAdapter {
 		if (Gdx.input.justTouched()) {
 			guiCam.unproject(touchPoint.set(Gdx.input.getX(), Gdx.input.getY(), 0));
 
-			if (playBounds.contains(touchPoint.x, touchPoint.y)) {
-				Assets.playSound(Assets.clickSound);
-				game.setScreen(new GameScreen(game));
+			
+			if (CreateBounds.contains(touchPoint.x, touchPoint.y)) {
+				
+				//Assets.playSound(Assets.clickSound);
+				game.setScreen(new CreateScreen(game));
+				
+				//return;
+			}
+			
+			if (VisitBounds.contains(touchPoint.x, touchPoint.y)) {
+				
+				//Assets.playSound(Assets.clickSound);
+				game.setScreen(new VisitScreen(game));
+				
+				//return;
+			}
+			
+			if (OptionsBounds.contains(touchPoint.x, touchPoint.y)) {
+				
+				//Assets.playSound(Assets.clickSound);
+				game.setScreen(new OptionsScreen(game));
+				
 				return;
 			}
-			if (highscoresBounds.contains(touchPoint.x, touchPoint.y)) {
-				Assets.playSound(Assets.clickSound);
-				game.setScreen(new HighscoresScreen(game));
-				return;
-			}
-			if (helpBounds.contains(touchPoint.x, touchPoint.y)) {
-				Assets.playSound(Assets.clickSound);
+			
+			if (HelpBounds.contains(touchPoint.x, touchPoint.y)) {
+				
+				//Assets.playSound(Assets.clickSound);
+				
 				game.setScreen(new HelpScreen(game));
+				
 				return;
 			}
-			if (soundBounds.contains(touchPoint.x, touchPoint.y)) {
-				Assets.playSound(Assets.clickSound);
-				Settings.soundEnabled = !Settings.soundEnabled;
-				if (Settings.soundEnabled)
-					Assets.music.play();
-				else
-					Assets.music.pause();
+			
+			if (AboutBounds.contains(touchPoint.x, touchPoint.y)) {
+				
+				//Assets.playSound(Assets.clickSound);
+				
+				game.setScreen(new AboutScreen(game));
+				
+				return;
 			}
 		}
 	}
 
 	public void draw () {
+		
 		GL20 gl = Gdx.gl;
-		gl.glClearColor(1, 0, 0, 1);
+		gl.glClearColor(0, 0, 0, 1);
 		gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		guiCam.update();
-		game.batcher.setProjectionMatrix(guiCam.combined);
+		game.batch.setProjectionMatrix(guiCam.combined);
 
-		game.batcher.disableBlending();
-		game.batcher.begin();
-		game.batcher.draw(Assets.backgroundRegion, 0, 0, 320, 480);
-		game.batcher.end();
+		game.batch.disableBlending();
+		game.batch.begin();
+		//game.batcher.draw(Assets.backgroundRegion, 0, 0, 320, 480);
+		game.batch.end();
 
-		game.batcher.enableBlending();
-		game.batcher.begin();
-		game.batcher.draw(Assets.logo, 160 - 274 / 2, 480 - 10 - 142, 274, 142);
-		game.batcher.draw(Assets.mainMenu, 10, 200 - 110 / 2, 300, 110);
-		game.batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 0, 64, 64);
-		game.batcher.end();	
+		game.batch.enableBlending();
+		game.batch.begin();
+		
+		game.batch.draw(Assets.create,  (1600-1560)/2, 2820, 1560,  705);
+		game.batch.draw(Assets.visit,   (1600-1560)/2, 2115, 1560,  705);
+		game.batch.draw(Assets.options, (1600-1560)/2, 1410, 1560,  705);
+		game.batch.draw(Assets.help,    (1600-1560)/2, 705,  1560,  705);
+		game.batch.draw(Assets.about,   (1600-1560)/2, 0,    1560,  705);
+		
+		//game.batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 0, 64, 64);
+		game.batch.end();	
 	}
 
 	@Override

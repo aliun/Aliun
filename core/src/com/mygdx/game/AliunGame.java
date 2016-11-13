@@ -1,7 +1,9 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 
 public class AliunGame extends Game {
 	
@@ -9,7 +11,8 @@ public class AliunGame extends Game {
 	
 	@Override
 	public void create () {
-		batcher = new SpriteBatch();
+		batch = new SpriteBatch();
+		
 		Settings.load();
 		Assets.load();
 		setScreen(new MainMenuScreen(this));

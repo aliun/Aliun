@@ -32,12 +32,12 @@ public class Assets {
 		//background = loadTexture("data/background.png");
 		//backgroundRegion = new TextureRegion(background, 0, 0, 320, 480);
 
-		items = loadTexture("data/items.png");
-		create = new TextureRegion(items, 0, 224, 300, 110);
-		visit = new TextureRegion(items, 224, 128, 192, 96);
-		options = new TextureRegion(items, 320, 224, 192, 32);
-		help = new TextureRegion(items, 352, 256, 160, 96);
-	    about = new TextureRegion(items, 0, 257, 300, 110 / 3);
+		items = loadTexture("assets.png");
+		create = new TextureRegion  (items, 0, 705,  1560, 705);   // podesi ove koordinate
+		visit = new TextureRegion   (items, 0, 1410, 1560, 705);
+		options = new TextureRegion (items, 0, 2820, 1560, 705);
+		help = new TextureRegion    (items, 0, 0,    1560, 705);
+	    about = new TextureRegion   (items, 0, 2115, 1560, 705);
 
 		//coinAnim = new Animation(0.2f, new TextureRegion(items, 128, 32, 32, 32), new TextureRegion(items, 160, 32, 32, 32),
 		//	new TextureRegion(items, 192, 32, 32, 32), new TextureRegion(items, 160, 32, 32, 32));

@@ -20,13 +20,13 @@ public class MainMenuScreen extends ScreenAdapter {
 	public MainMenuScreen (AliunGame game) {
 		this.game = game;
 
-		guiCam = new OrthographicCamera(4500, 8000); 
-		guiCam.position.set(4500 / 2, 8000 / 2, 0);
+		guiCam = new OrthographicCamera(1080, 1921); 
+		guiCam.position.set(1080 / 2, 1921 / 2, 0);
 		
-		CreateBounds = new Rectangle   ((4500-480)/2, 4000, 480, 200); 
-		VisitBounds = new Rectangle    ((4500-480)/2, 5000, 480, 200);
-		AboutBounds = new Rectangle    ((4500-480)/2, 6000, 480, 200);
-		HelpBounds = new Rectangle     ((4500-480)/2, 7000, 480, 200);
+		CreateBounds = new Rectangle   ((1080-480)/2, 1150, 480, 200); 
+		VisitBounds = new Rectangle    ((1080-480)/2, 900, 480, 200);
+		AboutBounds = new Rectangle    ((1080-480)/2, 650, 480, 200);
+		HelpBounds = new Rectangle     ((1080-480)/2, 400, 480, 200);
 		
 		
 		touchPoint = new Vector3();
@@ -84,18 +84,21 @@ public class MainMenuScreen extends ScreenAdapter {
 
 		game.batch.disableBlending();
 		game.batch.begin();
-		game.batch.draw(Assets.backgroundRegion, 0, 0, 4500, 8000);
+		game.batch.draw(Assets.backgroundRegion, 0, 0, 1080, 1921);
 		game.batch.end();
 
 		game.batch.enableBlending();
 		game.batch.begin();
 		
-		game.batch.draw(Assets.create,  (4500-480)/2, 4000, 480, 200); 
-		game.batch.draw(Assets.visit,   (4500-480)/2, 5000, 480, 200); 
-		game.batch.draw(Assets.help,    (4500-480)/2, 6000, 480, 200); 
-		game.batch.draw(Assets.about,   (4500-480)/2, 7000, 480, 200); 
+		game.batch.draw(Assets.create,  (1080-480)/2, 1150, 480, 200);  
+		game.batch.draw(Assets.visit,   (1080-480)/2, 900, 480, 200); 
+		game.batch.draw(Assets.help,    (1080-480)/2, 650, 480, 200);  
+		game.batch.draw(Assets.about,   (1080-480)/2, 400, 480, 200); 
 		
-		//game.batcher.draw(Settings.soundEnabled ? Assets.soundOn : Assets.soundOff, 0, 0, 64, 64);
+		game.batch.draw(Assets.logo,   (1080-780)/2, 1400, 780, 390); 
+		
+		game.batch.draw(Settings.soundEnabled ? Assets.soundon : Assets.soundoff, 20, 20, 120, 120);
+		
 		game.batch.end();	
 	}
 

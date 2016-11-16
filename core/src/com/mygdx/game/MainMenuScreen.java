@@ -160,7 +160,8 @@ public class MainMenuScreen extends ScreenAdapter implements InputProcessor{
 
 			//Assets.playSound(Assets.click);
 				
-			game.setScreen(new CreateScreen(game));
+			if (Settings.aliunCreated) game.setScreen(new VisitScreen(game));
+			else game.setScreen(new CreateScreen(game));
 		}
 			
 		if (HelpBounds.contains(screenX, screenY)) {

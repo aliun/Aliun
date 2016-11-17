@@ -84,7 +84,7 @@ public class Assets {
 		
 		
 
-		//click = Gdx.audio.newSound(Gdx.files.internal("click.wav"));
+		click = Gdx.audio.newSound(Gdx.files.internal("click.wav"));
 	}
 	
 	public static void playSound (Sound sound) {
